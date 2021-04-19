@@ -1,0 +1,50 @@
+[
+	{
+		"route"			: "\/login",
+		"conditions"	: {
+			"email"		: "[^@]+@csgroup.eu",
+			"password"	: ".*"
+		},		
+		"response"		: {
+			"code": 200,
+			"body": {
+				"token": "2c3de6549a12f1c136ae5df4e63a4def"
+			}
+		}
+	},
+	{
+		"route"			: "\/login",
+		"conditions"	: {
+			"email"		: ".*",
+			"password"	: ".*"
+		},		
+		"response"		: {
+			"code": 403,
+			"body": {
+				"error": "authentification rejected" 
+			}
+		}
+	},
+	{
+		"route"			: "\/login",
+		"response"		: {
+			"code"		: 404,
+			"body"		: {
+				"error"	: "missing parameters (require 'email' and 'password')"
+			}
+		}
+	},
+	{
+		"route"			: "\/content\/([0-9]+)",
+		"conditions"	: {
+			"$1" 		: "4[0-9]",
+			"data.up"	: "(on|yes)"
+		},
+		"response"		: {
+			"code"		: 200,
+			"body"		: { 
+				"content": "found"
+			}
+		}
+	}
+]
